@@ -23,10 +23,11 @@ $(BIN)/pytest: requirements.txt
 setup: $(BIN)/pytest
 
 test: setup
-	$(BIN)/python -m pytest tests -q
+	$(BIN)/python -m pytest tests contracts/tests -q
 
 lint: setup
 	$(BIN)/genvm-lint check $(CONTRACT)
+	$(BIN)/genvm-lint check contracts/milestone_judge.py
 
 # Optional: needs a `pyright` binary on PATH (npm i -g pyright).
 typecheck: setup

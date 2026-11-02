@@ -1,0 +1,95 @@
+{
+ "note": "ReleaseBonus re-deployed with final_only=false after the LATEST_FINAL cross-contract read timed out the leader",
+ "milestone_judge": "0x57a62656fbc591408aaE569b51Adc77f3536de82",
+ "code_sha256": "d3c7fca75ef3bed1f7e6d7a9be690da9907c5a1ea530ffb354d7cf6ae1b66fad",
+ "steps": [
+  {
+   "tx": "0xd5d5046a97c2018b7c089cadb526d1c90f5321007d230159e3bc4d867293c930",
+   "transitions": [
+    {
+     "at": "2026-11-02T05:00:49.224Z",
+     "status": "PENDING"
+    },
+    {
+     "at": "2026-11-02T05:00:53.590Z",
+     "status": "ACCEPTED"
+    },
+    {
+     "at": "2026-11-02T05:01:24.147Z",
+     "status": "FINALIZED"
+    }
+   ],
+   "final": {
+    "status": "FINALIZED",
+    "execution": "SUCCESS",
+    "votes": {
+     "idle": 2,
+     "agree": 3
+    },
+    "error": null
+   },
+   "label": "deploy release_bonus.py (final_only=false)"
+  },
+  {
+   "tx": "0x1f19d798f50c9779ea138f5bc2556f7253ee0004dba33184eb2801bc9eca5d86",
+   "transitions": [
+    {
+     "at": "2026-11-02T05:01:24.798Z",
+     "status": "PENDING"
+    },
+    {
+     "at": "2026-11-02T05:01:29.147Z",
+     "status": "COMMITTING"
+    },
+    {
+     "at": "2026-11-02T05:01:33.513Z",
+     "status": "ACCEPTED"
+    },
+    {
+     "at": "2026-11-02T05:02:04.195Z",
+     "status": "FINALIZED"
+    }
+   ],
+   "final": {
+    "status": "FINALIZED",
+    "execution": "SUCCESS",
+    "votes": {
+     "agree": 3,
+     "idle": 2
+    },
+    "error": null
+   },
+   "label": "claim(1, 0) by the freelancer"
+  },
+  {
+   "tx": "0x58d4d18dcf94a4333884739bb2501a16af5baf7d02b2a95a8b348fe9aebad02d",
+   "transitions": [
+    {
+     "at": "2026-11-02T05:02:04.735Z",
+     "status": "PENDING"
+    },
+    {
+     "at": "2026-11-02T05:02:09.092Z",
+     "status": "ACCEPTED"
+    },
+    {
+     "at": "2026-11-02T05:02:39.697Z",
+     "status": "FINALIZED"
+    }
+   ],
+   "final": {
+    "status": "FINALIZED",
+    "execution": "ERROR",
+    "votes": {
+     "agree": 3,
+     "idle": 2
+    },
+    "error": "[EXPECTED] bonus already claimed"
+   },
+   "label": "claim(1, 0) again (must revert)"
+  }
+ ],
+ "address": "0xbF0A3829d39F7C60e686E91DE68F92EB3cDAc1eD",
+ "bonus_of_freelancer": 50,
+ "stored_code_sha256": "d3c7fca75ef3bed1f7e6d7a9be690da9907c5a1ea530ffb354d7cf6ae1b66fad"
+}

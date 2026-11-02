@@ -24,19 +24,26 @@ from genlayer.py.public_abi import StorageType
 class ReleaseBonus(gl.Contract):
     judge: Address
     bonus_units: u256
+    final_only: bool                    # read LATEST_FINAL (safe default) or LATEST_NON_FINAL
     claimed: TreeMap[str, str]          # "<engagement>:<index>" -> freelancer hex
     credited: TreeMap[str, u256]        # freelancer hex -> bonus units
 
-    def __init__(self, milestone_judge: str, bonus_units: int):
+    def __init__(self, milestone_judge: str, bonus_units: int, final_only: bool = True):
         self.judge = Address(milestone_judge)
         self.bonus_units = u256(bonus_units)
+        self.final_only = bool(final_only)
 
     @gl.public.write
     def claim(self, engagement_id: int, index: int) -> int:
         judge = gl.get_contract_at(self.judge)
-        # Read only finalized state: an appeal can no longer change it.
-        m = judge.view(state=StorageType.LATEST_FINAL).get_milestone(engagement_id, index)
-        c = judge.view(state=StorageType.LATEST_FINAL).get_contract(engagement_id)
+        # Default: read only finalized state, so nothing an appeal could still
+        # change is acted on. (On studionet, 2026-11-02, a LATEST_FINAL
+        # cross-contract read timed out the leader; final_only=False reads the
+        # latest accepted state instead. MilestoneJudge's own FINAL status is
+        # already appeal-proof, so this is safe once that tx is finalized.)
+        state = StorageType.LATEST_FINAL if self.final_only else StorageType.LATEST_NON_FINAL
+        m = judge.view(state=state).get_milestone(engagement_id, index)
+        c = judge.view(state=state).get_contract(engagement_id)
         if m["status"] != "FINAL" or m["settlement"] != "RELEASED":
             raise gl.vm.UserError("[EXPECTED] milestone is not released")
         me = gl.message.sender_address.as_hex.lower()

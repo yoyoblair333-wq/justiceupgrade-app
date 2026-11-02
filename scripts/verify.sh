@@ -8,7 +8,8 @@
 #   1 setup: fresh .venv + pinned Python tools (requirements.txt)
 #   2 genvm-lint check: AST safety lint + GenVM SDK semantic validation
 #   3 genvm-lint schema: the contract's ABI extracts
-#   4 contract tests: 144 direct-mode pytest tests, real GenVM v0.2.16 SDK, LLM mocked
+#   4 contract tests: direct-mode pytest tests (JusticeUpgrade + MilestoneJudge),
+#     real GenVM v0.2.16 SDK, LLM and web mocked
 #   5 setup: web/ npm ci (package-lock.json)
 #   6 web build (esbuild bundle + evidence index)
 #   7 web unit tests (node only, no browser, no network)
@@ -88,9 +89,10 @@ skip() { NAMES+=("$1"); RESULTS+=("SKIP"); echo; echo "==> $(( ${#NAMES[@]} )). 
 step "setup: fresh .venv + pinned requirements" bash -c "rm -rf .venv && '$PY' -m venv .venv && .venv/bin/python -m pip install --quiet --upgrade pip && .venv/bin/python -m pip install --quiet -r requirements.txt && .venv/bin/python -m pip freeze | grep -iE '^(genlayer-test|genvm-linter|pytest|genlayer-py)=='"
 step "genvm-lint check (lint + SDK validation)" .venv/bin/genvm-lint check contracts/justice_upgrade.py
 step "genvm-lint schema (ABI)" .venv/bin/genvm-lint schema contracts/justice_upgrade.py
+step "genvm-lint check: MilestoneJudge + integration example" bash -c ".venv/bin/genvm-lint check contracts/milestone_judge.py && .venv/bin/genvm-lint check examples/milestone-judge/release_bonus.py"
 # First run downloads the GenVM SDK release (~200 MB) into ~/.cache/gltest-direct.
 # The "gltest.config.yaml not found" warning is expected: direct mode uses no network.
-step "contract tests (pytest, direct mode, LLM mocked)" .venv/bin/python -m pytest tests -q -p no:cacheprovider
+step "contract tests (pytest, direct mode, LLM mocked)" .venv/bin/python -m pytest tests contracts/tests -q -p no:cacheprovider
 step "setup: web npm ci" bash -c "cd web && npm ci --no-audit --no-fund --loglevel=error"
 step "web build" bash -c "cd web && npm run --silent build"
 step "web unit tests (node, no network)" bash -c "cd web && node --test --test-reporter=spec test/unit.test.mjs"

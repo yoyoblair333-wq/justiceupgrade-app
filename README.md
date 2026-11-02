@@ -251,3 +251,12 @@ JusticeUpgrade has the same author as **VERDICT**. JusticeUpgrade is the develop
 MIT, see [`LICENSE`](LICENSE).
 
 #JusticeNeedsAnUpgrade
+
+## Also in this repo: MilestoneJudge
+
+[`contracts/milestone_judge.py`](contracts/milestone_judge.py) is a second, standalone Intelligent
+Contract: a milestone escrow graded against a rubric. Validators fetch the delivery page themselves,
+label each criterion against quotes the contract checks on the page, agree on an exact label match
+and a pinned content hash, and appeal to a 3-juror panel. A deterministic rule decides the payout.
+It was run live on studionet. Design, threat model and every tx:
+[`docs/MILESTONE_JUDGE.md`](docs/MILESTONE_JUDGE.md).
