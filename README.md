@@ -1,5 +1,11 @@
 # JusticeUpgrade v2 — the courthouse in a contract
 
+> **Live now:** web app https://yoyoblair333-wq.github.io/justiceupgrade-app/v2/ ·
+> contract `0x3c1c2202bD4c092616FFDBCFe7981c4299199E01` on GenLayer studionet ([open in Studio](https://studio.genlayer.com/?import-contract=0x3c1c2202bD4c092616FFDBCFe7981c4299199E01)) ·
+> [live run record](docs/live/v2-studionet-run.json) · [45-second demo](docs/media/v2-demo.mp4)
+
+![JusticeUpgrade v2 demo](docs/media/v2-demo.gif)
+
 **Fast, cheap, impartial dispute resolution that lives entirely on-chain — for the
 people and the agents who can never afford a court.**
 

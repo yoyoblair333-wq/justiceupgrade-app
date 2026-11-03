@@ -4,7 +4,7 @@
 // ledger. Output: a .webm in the given directory (convert with ffmpeg).
 //
 //   node scripts/v2_demo_record.mjs http://localhost:3000 /tmp/out
-import { chromium } from "playwright";
+import { chromium } from "/home/claude/.npm-global/lib/node_modules/playwright/index.mjs";
 
 const URL = process.argv[2] ?? "http://localhost:3000";
 const OUT = process.argv[3] ?? "/tmp/v2-demo";
@@ -20,27 +20,24 @@ const glide = async (y, steps = 25) => {
 };
 
 await page.goto(URL, { waitUntil: "networkidle" });
-await pause(2500);
-await glide(500); await pause(2000);
-await glide(1000); await pause(1500);
-
-// Look up the live bike-1 case
-const box = page.getByPlaceholder(/agreement/i).last();
-await box.scrollIntoViewIfNeeded(); await pause(800);
-await box.click(); await box.pressSequentially("bike-1", { delay: 120 }); await pause(500);
+await pause(3000);                               // hero
+await glide(420); await pause(2500);             // live web evidence + how it works
+// Jump to the tracker and open the live bike-1 case
+const box = page.getByPlaceholder(/agreement ID/i).last();
+const boxY = await box.evaluate((el) => el.getBoundingClientRect().top + window.scrollY - 160);
+await glide(boxY, 30); await pause(800);
+await box.click(); await box.pressSequentially("bike-1", { delay: 110 }); await pause(400);
 await page.keyboard.press("Enter");
-await pause(7000);
-const viewer = box.locator("xpath=ancestor::*[self::section or self::div][3]");
-await viewer.scrollIntoViewIfNeeded().catch(() => {});
+await page.getByText(/Arbiter.s verdict/i).first().waitFor({ timeout: 30000 }).catch(() => {});
 await pause(2500);
-for (let i = 0; i < 6; i++) { await page.mouse.wheel(0, 260); await pause(1100); }
-
-// Precedent ledger
-const prec = page.getByText(/Precedent/i).first();
-await prec.scrollIntoViewIfNeeded().catch(() => {}); await pause(4000);
-for (let i = 0; i < 3; i++) { await page.mouse.wheel(0, 250); await pause(1100); }
+// Walk down the case: parties, terms, evidence (with the page the chain fetched), verdict, appeal ladder
+for (let i = 0; i < 16; i++) { await page.mouse.wheel(0, 140); await pause(650); }
 await pause(1500);
-
+// Precedent ledger at the bottom
+const prec = page.getByRole("heading", { name: /Precedent/i });
+const pY = await prec.evaluate((el) => el.getBoundingClientRect().top + window.scrollY - 120).catch(() => null);
+if (pY !== null) { await glide(pY, 30); }
+await pause(4500);
 await ctx.close();
 await browser.close();
 console.log("recorded to", OUT);
