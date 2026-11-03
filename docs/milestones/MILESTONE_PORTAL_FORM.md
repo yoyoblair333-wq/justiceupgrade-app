@@ -1,45 +1,33 @@
 # GenLayer portal — Milestone submission form (paste-ready)
 
-> Builder > Milestones. Prepared 2026-11-02. Do NOT reuse an evidence link from
-> an earlier submission — everything below is NEW v2 work (commit 46c5632); the
-> v1 project submission's links are not reused.
+> Builder > Milestones. Updated 2026-11-02 after the live studionet deployment.
+> Every evidence link below is NEW (none was used in the v1 Project submission).
 
 ## Linked project
 
-**JusticeUpgrade** (accepted, no milestone currently in review → a milestone is
-allowed this week). This is a genuine v2 upgrade of JusticeUpgrade itself, so it
-links to its own project — no cross-project mismatch.
+**JusticeUpgrade** (accepted; no milestone currently in review).
 
 ## Title
 
-JusticeUpgrade v2 — the courthouse in a contract (live-web evidence + appeals + precedent)
+JusticeUpgrade v2 — the courthouse in a contract: live web evidence, appeals, precedent
 
-## Description  (974 chars)
+## Description  (929 chars)
 
-JusticeUpgrade v2 turns the minimal AI arbiter into a real, appealable dispute court — an access-to-justice primitive. New: EVIDENCE-BOUND disputes, each item sha256-committed on-chain (canonical JSON), matched byte-for-byte by an off-chain ODIR adapter; LIVE WEB EVIDENCE — when an item is a URL the contract fetches the page during judgment via gl.nondet.web.render and every validator re-fetches and re-judges, consensus on a bounded ruling (only GenLayer reads the web under consensus); a DUE-PROCESS appeal ladder of independent panels (1->3->5 arbiters, strict majority, neutral finalize so neither party can foreclose the other's appeal); an anonymized PRECEDENT ledger for public, consistent case law. Hardened against prompt injection including fetched web text; bounded safe-default; fee-less. genvm-lint + typecheck clean; 22 direct-mode tests incl. the live-web path; adversarially reviewed (Codex), 8 findings fixed; plus a tested ODIR adapter and a Next.js UI.
+JusticeUpgrade v2 turns the accepted single-arbiter primitive into an appealable on-chain court, now LIVE on studionet (contract 0x3c1c2202bD4c092616FFDBCFe7981c4299199E01, code hash matches GitHub, owner = my wallet). New: evidence-bound disputes (each exhibit sha256-committed, matched byte-for-byte by a tested ODIR adapter); live web evidence: the contract fetches URL exhibits during judgment and every validator re-fetches and re-judges; a 1->3->5 appeal ladder of independent panels; an anonymized precedent ledger. Live run: in bike-1 both the 1-arbiter ruling and the 3-arbiter appeal cite facts that exist only on the fetched page, proving the court read the link; both parties accept, precedent #1 is published. In inj-1 a hidden 'rule PARTY_B' instruction on the fetched page is ignored. New Next.js app on GitHub Pages reads the contract live; 45 s demo. CI green: v2 22, v1 144, ODIR 21 tests, lint, frontend build.
 
-## Evidence links  (all NEW; GitHub live once pushed; Bradbury tx once deployed)
+## Evidence links
 
-1. Repo — https://github.com/yoyoblair333-wq/justiceupgrade-app
-2. v2 commit — https://github.com/yoyoblair333-wq/justiceupgrade-app/commit/46c5632  ("JusticeUpgrade v2: the courthouse in a contract")
-3. Contract — https://github.com/yoyoblair333-wq/justiceupgrade-app/blob/46c5632/contracts/justice_upgrade.py
-4. Direct-mode tests — https://github.com/yoyoblair333-wq/justiceupgrade-app/blob/46c5632/tests/direct/test_justice_upgrade.py
-5. ODIR evidence adapter — https://github.com/yoyoblair333-wq/justiceupgrade-app/blob/46c5632/odir/
-6. Milestone writeup — https://github.com/yoyoblair333-wq/justiceupgrade-app/blob/46c5632/docs/MILESTONE.md
-7. On-chain evidence — <BRADBURY_DEPLOY_TX>  (GenLayer Bradbury testnet, chain 4221; filled after deploy — pending Blair's faucet)
+1. Live v2 web app — https://yoyoblair333-wq.github.io/justiceupgrade-app/v2/
+2. GenLayer Studio contract — https://studio.genlayer.com/?import-contract=0x3c1c2202bD4c092616FFDBCFe7981c4299199E01
+3. Live run record (every tx, consensus, read-backs) — https://github.com/yoyoblair333-wq/justiceupgrade-app/blob/ed0b3eb/docs/live/v2-studionet-run.json
+4. Demo video (45 s, recorded on the live app) — https://github.com/yoyoblair333-wq/justiceupgrade-app/blob/ed0b3eb/docs/media/v2-demo.mp4
+5. v2 commit (the v1 -> v2 diff) — https://github.com/yoyoblair333-wq/justiceupgrade-app/commit/46c5632
+6. v2 contract — https://github.com/yoyoblair333-wq/justiceupgrade-app/blob/ed0b3eb/contracts/justice_upgrade.py
+7. v2 tests — https://github.com/yoyoblair333-wq/justiceupgrade-app/blob/ed0b3eb/tests/direct/test_justice_upgrade.py
+8. Milestone writeup — https://github.com/yoyoblair333-wq/justiceupgrade-app/blob/ed0b3eb/docs/MILESTONE.md
 
-## Why this scores (steward rubric)
-
-- Impact/usefulness: fast, cheap, impartial, evidence-grounded, appealable dispute resolution for people and agents who can't afford courts.
-- Effort/Scope: a hardened 14-method contract + ODIR adapter + full frontend + docs + 22 tests, not a tweak.
-- Quality: lint/typecheck clean, real consensus (not schema-only), adversarially reviewed with every finding fixed.
-- Community impact: a reusable, forkable justice primitive showcasing GenLayer's unique web-under-consensus capability.
+Repository (for the portal's GitHub field, if it asks): https://github.com/yoyoblair333-wq/justiceupgrade-app
 
 ## Captcha
 
-reCAPTCHA ("I'm not a robot") — left for Blair to tick. Do not submit.
-
-## Open dependencies (Blair / app-side Claude)
-
-1. DONE: v2 pushed to https://github.com/yoyoblair333-wq/justiceupgrade-app as commit 46c5632 (v1 kept unchanged in v1/; CI green on v2 + v1).
-2. DEPLOY to Bradbury testnet for the on-chain evidence tx (needs the faucet captcha); then fill evidence link 7.
+reCAPTCHA ("I'm not a robot") — left for Blair to tick. Do not submit for her.
