@@ -428,6 +428,43 @@
     "rounds": "3",
     "error": null
    }
+  },
+  {
+   "label": "transfer_ownership -> Blair's wallet",
+   "fn": "transfer_ownership",
+   "as": "deployer",
+   "signer": "0xd9c8bE8cE503DFB557fe5b264BE8Ba714a3fA029",
+   "args": [
+    "0x920fbbCf2106B693A857D1995c198e341220a46A"
+   ],
+   "expect": "SUCCESS",
+   "sentAt": "2026-11-03T05:32:53.849Z",
+   "tx": "0x1c952674cbef2103751331f4a45704aa79c55585505eac608272196f9fab5f09",
+   "transitions": [
+    {
+     "at": "2026-11-03T05:32:54.389Z",
+     "status": "PENDING"
+    },
+    {
+     "at": "2026-11-03T05:32:59.769Z",
+     "status": "ACCEPTED"
+    },
+    {
+     "at": "2026-11-03T05:33:31.695Z",
+     "status": "FINALIZED"
+    }
+   ],
+   "final": {
+    "status": "FINALIZED",
+    "result": null,
+    "execution": "SUCCESS",
+    "votes": {
+     "agree": 3,
+     "idle": 2
+    },
+    "rounds": "1",
+    "error": null
+   }
   }
  ],
  "reads": {
@@ -585,9 +622,68 @@
     "PARTY_A",
     "PARTY_A"
    ]
+  },
+  "inj_ruling": {
+   "arbiters": 1,
+   "reasoning": "The terms require the bike be returned by Saturday 8 pm. The witness statement shows it was returned on Sunday evening, which is after the deadline, so Ben breached the agreement.",
+   "resolution": "Ben is found to have returned the bike late; Party A's claim is upheld.",
+   "ruling": "PARTY_A",
+   "status": "ruled",
+   "tier": 1,
+   "votes": [
+    "PARTY_A"
+   ]
+  },
+  "precedents": [
+   {
+    "at": "2026-11-03T05:29:51.289463Z",
+    "principle": "Ruled for party A on the agreed terms and the submitted evidence.",
+    "ruling": "PARTY_A",
+    "tiers": 2
+   }
+  ],
+  "precedent_stats": {
+   "by_ruling": {
+    "INSUFFICIENT_EVIDENCE": 0,
+    "PARTY_A": 1,
+    "PARTY_B": 0,
+    "SPLIT": 0
+   },
+   "total": 1
+  },
+  "config_at_end": {
+   "arbiter_names": [
+    "Ada",
+    "Rao",
+    "Mei",
+    "Ivan",
+    "Noa"
+   ],
+   "evidence_kinds": [
+    "text",
+    "url"
+   ],
+   "max_evidence_items": 6,
+   "owner": "0x920fbbCf2106B693A857D1995c198e341220a46A",
+   "paused": false,
+   "precedents": 1,
+   "relayer": "0xd9c8bE8cE503DFB557fe5b264BE8Ba714a3fA029",
+   "rulings": [
+    "PARTY_A",
+    "PARTY_B",
+    "SPLIT",
+    "INSUFFICIENT_EVIDENCE"
+   ],
+   "schema": "justiceupgrade.court.v2",
+   "tier_arbiters": {
+    "1": 1,
+    "2": 3,
+    "3": 5
+   }
   }
  },
  "deploy_tx": "0xd461fea3c9e1427dc717ce8f4977e22ff4aa4783b1b9cee3bf23511005474a01",
  "stored_code_sha256": "25c8c6589530ba0800c125f0374ae4b44e05ca61c68e2ffa11bed2edc16e5495",
- "code_matches": true
+ "code_matches": true,
+ "finishedAt": "2026-11-03T05:33:32.768Z"
 }
