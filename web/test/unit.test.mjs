@@ -87,7 +87,7 @@ src=open(sys.argv[1],encoding="utf-8").read()
 for n in ast.parse(src).body:
     if isinstance(n,ast.Assign) and getattr(n.targets[0],"id","")=="_CONTROL_PATTERNS":
         print(json.dumps([ast.literal_eval(e) for e in n.value.elts]))`;
-  const out = execFileSync("python3", ["-c", py, path.join(ROOT, "contracts/justice_upgrade.py")], { encoding: "utf8" });
+  const out = execFileSync("python3", ["-c", py, path.join(ROOT, "v1/contracts/justice_upgrade.py")], { encoding: "utf8" });
   assert.deepEqual(CONTROL_PATTERNS, JSON.parse(out));
 });
 

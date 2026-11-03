@@ -1,6 +1,17 @@
-.venv/
+node_modules/
+.next/
+.env
+.env.local
 __pycache__/
+*.pyc
+.DS_Store
+# Python / GenLayer test tooling
+.venv/
+**/.venv/
 .pytest_cache/
 artifacts/
-*.pyc
-.env.local
+contracts/artifacts/
+# JS build output
+dist/
+dist-test/
+out/

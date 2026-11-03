@@ -24,6 +24,7 @@ setup: $(BIN)/pytest
 
 test: setup
 	$(BIN)/python -m pytest tests contracts/tests -q
+	$(BIN)/python -m pytest v1/tests -q
 
 lint: setup
 	$(BIN)/genvm-lint check $(CONTRACT)

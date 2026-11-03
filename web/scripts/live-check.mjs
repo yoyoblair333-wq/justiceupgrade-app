@@ -6,7 +6,7 @@
 //
 // Checks, each printed as PASS/FAIL:
 //   1 the code the chain returns (gen_getContractCode) hashes to the same
-//     sha256 as contracts/justice_upgrade.py in THIS clone
+//     sha256 as v1/contracts/justice_upgrade.py in THIS clone
 //   2 get_rules(): the four rulings, holds_funds false
 //   3 get_agreement_count() covers the recorded agreements
 //   4 get_ruling("chores-1") is RESOLVED / SPLIT, as recorded in docs/live/studionet-run.json
@@ -69,7 +69,7 @@ for (let i = 1; ; i++) {
 }
 
 check(
-  "deployed code sha256 = sha256 of contracts/justice_upgrade.py",
+  "deployed code sha256 = sha256 of v1/contracts/justice_upgrade.py",
   d.code.ok && d.code.value.digest === localSha,
   d.code.ok ? `${d.code.value.digest} (${d.code.value.bytes} bytes)` : d.code.error,
 );

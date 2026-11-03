@@ -10,7 +10,7 @@ env:
 jobs:
   verify:
     # The exact command a reviewer runs from a fresh clone (README, "Verify in
-    # 2 minutes"): pinned Python tools, genvm-lint, 144 contract tests, web
+    # 2 minutes"): pinned Python tools, genvm-lint (v2 + v1), v2 + v1 contract tests, web
     # build + unit tests, and the read-only live check against the deployed
     # contract on studionet. Ends with "VERIFY: PASS".
     runs-on: ubuntu-24.04
@@ -55,3 +55,26 @@ jobs:
       - run: npm run build
       - name: Web unit + browser (offline) tests
         run: npm test
+
+  frontend-v2:
+    # JusticeUpgrade v2 frontend (Next.js) and the ODIR evidence adapter.
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+          cache-dependency-path: frontend/package-lock.json
+      - name: ODIR adapter tests
+        working-directory: odir
+        run: npm test
+      - name: Frontend install
+        working-directory: frontend
+        run: npm ci --no-audit --no-fund
+      - name: Frontend type check + build
+        working-directory: frontend
+        env:
+          NEXT_TELEMETRY_DISABLED: "1"
+        run: npm run build

@@ -10,7 +10,7 @@ export const REPO_URL = "https://github.com/yoyoblair333-wq/justiceupgrade-app";
  * compares it with the hash of the code the chain returns (gen_getContractCode).
  * raw.githubusercontent.com allows cross-origin reads.
  */
-export const SOURCE_PATH = "contracts/justice_upgrade.py";
+export const SOURCE_PATH = "v1/contracts/justice_upgrade.py";
 export const GITHUB_SOURCE_URL = `https://raw.githubusercontent.com/yoyoblair333-wq/justiceupgrade-app/main/${SOURCE_PATH}`;
 export const EVIDENCE_PATH = "docs/live/studionet-run.json";
 /** Parallel RPC requests at most, so a page load does not hammer studionet. */
