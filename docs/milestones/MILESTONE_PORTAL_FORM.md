@@ -1,7 +1,7 @@
 # GenLayer portal — Milestone submission form (paste-ready)
 
 > Builder > Milestones. Prepared 2026-11-02. Do NOT reuse an evidence link from
-> an earlier submission — everything below is NEW v2 work (commit d58eab0); the
+> an earlier submission — everything below is NEW v2 work (commit 46c5632); the
 > v1 project submission's links are not reused.
 
 ## Linked project
@@ -20,12 +20,12 @@ JusticeUpgrade v2 turns the minimal AI arbiter into a real, appealable dispute c
 
 ## Evidence links  (all NEW; GitHub live once pushed; Bradbury tx once deployed)
 
-1. Repo — <JUSTICEUPGRADE_REPO_URL>  (set to the accepted project's GitHub repo once the v2 commit is pushed there)
-2. v2 commit — <JUSTICEUPGRADE_REPO_URL>/commit/d58eab0  ("JusticeUpgrade v2: the courthouse in a contract")
-3. Contract — .../blob/d58eab0/contracts/justice_upgrade.py
-4. Direct-mode tests — .../blob/d58eab0/tests/direct/test_justice_upgrade.py
-5. ODIR evidence adapter — .../blob/d58eab0/odir/
-6. Milestone writeup — .../blob/d58eab0/docs/MILESTONE.md
+1. Repo — https://github.com/yoyoblair333-wq/justiceupgrade-app
+2. v2 commit — https://github.com/yoyoblair333-wq/justiceupgrade-app/commit/46c5632  ("JusticeUpgrade v2: the courthouse in a contract")
+3. Contract — https://github.com/yoyoblair333-wq/justiceupgrade-app/blob/46c5632/contracts/justice_upgrade.py
+4. Direct-mode tests — https://github.com/yoyoblair333-wq/justiceupgrade-app/blob/46c5632/tests/direct/test_justice_upgrade.py
+5. ODIR evidence adapter — https://github.com/yoyoblair333-wq/justiceupgrade-app/blob/46c5632/odir/
+6. Milestone writeup — https://github.com/yoyoblair333-wq/justiceupgrade-app/blob/46c5632/docs/MILESTONE.md
 7. On-chain evidence — <BRADBURY_DEPLOY_TX>  (GenLayer Bradbury testnet, chain 4221; filled after deploy — pending Blair's faucet)
 
 ## Why this scores (steward rubric)
@@ -41,5 +41,5 @@ reCAPTCHA ("I'm not a robot") — left for Blair to tick. Do not submit.
 
 ## Open dependencies (Blair / app-side Claude)
 
-1. PUSH the v2 commit d58eab0 to the accepted JusticeUpgrade GitHub repo (this local repo has no remote yet — need the repo URL), which also produces the v1->v2 diff.
+1. DONE: v2 pushed to https://github.com/yoyoblair333-wq/justiceupgrade-app as commit 46c5632 (v1 kept unchanged in v1/; CI green on v2 + v1).
 2. DEPLOY to Bradbury testnet for the on-chain evidence tx (needs the faucet captcha); then fill evidence link 7.
