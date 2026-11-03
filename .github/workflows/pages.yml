@@ -1,6 +1,7 @@
 name: pages
 
-# Builds web/ (the live JusticeUpgrade web app) and deploys it to GitHub
+# Builds web/ (the live JusticeUpgrade v1 web app) plus the v2 frontend at
+# /v2/, and deploys both to GitHub
 # Pages at https://yoyoblair333-wq.github.io/justiceupgrade-app/ (every URL in
 # the page is relative, so it works under the /justiceupgrade-app/ base path).
 # The page reads the contract on GenLayer studionet live from the visitor's
@@ -45,6 +46,20 @@ jobs:
         # snapshot from web/snapshot/ stays in place.
         continue-on-error: true
         run: npm run snapshot -- dist/snapshot.json
+      - name: Build the v2 frontend (Next.js static export) into /v2/
+        working-directory: frontend
+        env:
+          NEXT_STATIC_EXPORT: "1"
+          NEXT_TELEMETRY_DISABLED: "1"
+          NEXT_PUBLIC_GENLAYER_RPC_URL: https://studio.genlayer.com/api
+          NEXT_PUBLIC_GENLAYER_CHAIN_ID: "61999"
+          NEXT_PUBLIC_GENLAYER_CHAIN_NAME: GenLayer Studio
+          NEXT_PUBLIC_GENLAYER_SYMBOL: GEN
+          NEXT_PUBLIC_JUSTICE_CONTRACT_ADDRESS: "0x3c1c2202bD4c092616FFDBCFe7981c4299199E01"
+        run: |
+          npm ci --no-audit --no-fund
+          npm run build
+          rm -rf ../web/dist/v2 && cp -r out ../web/dist/v2
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:
