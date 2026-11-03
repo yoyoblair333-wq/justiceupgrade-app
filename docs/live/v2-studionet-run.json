@@ -1,0 +1,161 @@
+{
+ "network": "studionet",
+ "rpc": "https://studio.genlayer.com/api",
+ "startedAt": "2026-11-03T05:24:42.212Z",
+ "contract_file": "contracts/justice_upgrade.py",
+ "contract_code_sha256": "25c8c6589530ba0800c125f0374ae4b44e05ca61c68e2ffa11bed2edc16e5495",
+ "final_owner": "0x920fbbCf2106B693A857D1995c198e341220a46A",
+ "deployer": "0xd9c8bE8cE503DFB557fe5b264BE8Ba714a3fA029",
+ "party_a_ana": "0xfF60E1b30413B8FE18aFdB01c9aBE5d39292BAD3",
+ "party_b_ben": "0xB48d385B3C845F523769ff741435E508e4dCa0D2",
+ "evidence_commit": "91b56e9b79ebd40d104b3131dc8b71c2d3422ffd",
+ "contract": "0x3c1c2202bD4c092616FFDBCFe7981c4299199E01",
+ "steps": [
+  {
+   "label": "deploy JusticeUpgrade v2",
+   "fn": "deploy",
+   "as": "deployer",
+   "signer": "0xd9c8bE8cE503DFB557fe5b264BE8Ba714a3fA029",
+   "tx": "0xd461fea3c9e1427dc717ce8f4977e22ff4aa4783b1b9cee3bf23511005474a01",
+   "transitions": [
+    {
+     "at": "2026-11-03T05:24:43.919Z",
+     "status": "PENDING"
+    },
+    {
+     "at": "2026-11-03T05:24:49.363Z",
+     "status": "ACCEPTED"
+    },
+    {
+     "at": "2026-11-03T05:25:21.868Z",
+     "status": "FINALIZED"
+    }
+   ],
+   "final": {
+    "status": "FINALIZED",
+    "result": null,
+    "execution": "SUCCESS",
+    "votes": {
+     "agree": 3,
+     "idle": 2
+    },
+    "rounds": "1",
+    "error": null
+   },
+   "address": "0x3c1c2202bD4c092616FFDBCFe7981c4299199E01"
+  },
+  {
+   "label": "bike-1 create_agreement (Ana -> Ben)",
+   "fn": "create_agreement",
+   "as": "ana",
+   "signer": "0xfF60E1b30413B8FE18aFdB01c9aBE5d39292BAD3",
+   "args": [
+    "bike-1",
+    "0xB48d385B3C845F523769ff741435E508e4dCa0D2",
+    "Bike loan. Ana (party A) lends Ben (party B) her blue commuter bike on Saturday. Ben returns it by Saturday 8pm in the same condition. If anything breaks while Ben has it, Ben pays for the repair."
+   ],
+   "expect": "SUCCESS",
+   "sentAt": "2026-11-03T05:25:23.025Z",
+   "tx": "0x9e56cedf600f1b9171e3274bbd17726a19f4963026af8498d9593505c9eca7aa",
+   "transitions": [
+    {
+     "at": "2026-11-03T05:25:23.654Z",
+     "status": "PENDING"
+    },
+    {
+     "at": "2026-11-03T05:25:29.038Z",
+     "status": "ACCEPTED"
+    },
+    {
+     "at": "2026-11-03T05:26:01.413Z",
+     "status": "FINALIZED"
+    }
+   ],
+   "final": {
+    "status": "FINALIZED",
+    "result": null,
+    "execution": "SUCCESS",
+    "votes": {
+     "agree": 3,
+     "idle": 2
+    },
+    "rounds": "1",
+    "error": null
+   }
+  },
+  {
+   "label": "bike-1 file_dispute (Ana, text + live URL evidence)",
+   "fn": "file_dispute",
+   "as": "ana",
+   "signer": "0xfF60E1b30413B8FE18aFdB01c9aBE5d39292BAD3",
+   "args": [
+    "bike-1",
+    "Ben returned my bike a day late with a punctured rear tyre and has not paid the 14 dollar repair.",
+    "[{\"kind\":\"text\",\"label\":\"Ana's statement\",\"content\":\"The bike came back a day late with a flat rear tyre. The shop charged 14 dollars for a new inner tube.\"},{\"kind\":\"url\",\"label\":\"Return log and repair receipt\",\"content\":\"https://raw.githubusercontent.com/yoyoblair333-wq/justiceupgrade-app/91b56e9b79ebd40d104b3131dc8b71c2d3422ffd/docs/live/evidence-v2/bike-return-log.md\"}]"
+   ],
+   "expect": "SUCCESS",
+   "sentAt": "2026-11-03T05:26:01.415Z",
+   "tx": "0x24c46cc3f47b508fc19ba15380f277787bdba95e3686caa9f304550e4a5411a7",
+   "transitions": [
+    {
+     "at": "2026-11-03T05:26:01.821Z",
+     "status": "PENDING"
+    },
+    {
+     "at": "2026-11-03T05:26:07.235Z",
+     "status": "ACCEPTED"
+    },
+    {
+     "at": "2026-11-03T05:26:39.607Z",
+     "status": "FINALIZED"
+    }
+   ],
+   "final": {
+    "status": "FINALIZED",
+    "result": null,
+    "execution": "SUCCESS",
+    "votes": {
+     "agree": 3,
+     "idle": 2
+    },
+    "rounds": "1",
+    "error": null
+   }
+  }
+ ],
+ "reads": {
+  "config_at_start": {
+   "arbiter_names": [
+    "Ada",
+    "Rao",
+    "Mei",
+    "Ivan",
+    "Noa"
+   ],
+   "evidence_kinds": [
+    "text",
+    "url"
+   ],
+   "max_evidence_items": 6,
+   "owner": "0xd9c8bE8cE503DFB557fe5b264BE8Ba714a3fA029",
+   "paused": false,
+   "precedents": 0,
+   "relayer": "0xd9c8bE8cE503DFB557fe5b264BE8Ba714a3fA029",
+   "rulings": [
+    "PARTY_A",
+    "PARTY_B",
+    "SPLIT",
+    "INSUFFICIENT_EVIDENCE"
+   ],
+   "schema": "justiceupgrade.court.v2",
+   "tier_arbiters": {
+    "1": 1,
+    "2": 3,
+    "3": 5
+   }
+  }
+ },
+ "deploy_tx": "0xd461fea3c9e1427dc717ce8f4977e22ff4aa4783b1b9cee3bf23511005474a01",
+ "stored_code_sha256": "25c8c6589530ba0800c125f0374ae4b44e05ca61c68e2ffa11bed2edc16e5495",
+ "code_matches": true
+}
