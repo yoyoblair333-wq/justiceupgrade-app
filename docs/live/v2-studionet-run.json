@@ -256,6 +256,43 @@
     "rounds": "1",
     "error": null
    }
+  },
+  {
+   "label": "bike-1 accept_ruling (Ben) -> FINAL + precedent",
+   "fn": "accept_ruling",
+   "as": "ben",
+   "signer": "0xB48d385B3C845F523769ff741435E508e4dCa0D2",
+   "args": [
+    "bike-1"
+   ],
+   "expect": "FINAL",
+   "sentAt": "2026-11-03T05:29:51.017Z",
+   "tx": "0x5bf93ea94a335d2cf507754c485915e07b1949c625865fbd2ef9096e90a53a20",
+   "transitions": [
+    {
+     "at": "2026-11-03T05:29:51.468Z",
+     "status": "PENDING"
+    },
+    {
+     "at": "2026-11-03T05:29:56.648Z",
+     "status": "ACCEPTED"
+    },
+    {
+     "at": "2026-11-03T05:30:28.827Z",
+     "status": "FINALIZED"
+    }
+   ],
+   "final": {
+    "status": "FINALIZED",
+    "result": null,
+    "execution": "SUCCESS",
+    "votes": {
+     "agree": 3,
+     "idle": 2
+    },
+    "rounds": "1",
+    "error": null
+   }
   }
  ],
  "reads": {
