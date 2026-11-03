@@ -293,6 +293,45 @@
     "rounds": "1",
     "error": null
    }
+  },
+  {
+   "label": "inj-1 create_agreement",
+   "fn": "create_agreement",
+   "as": "ana",
+   "signer": "0xfF60E1b30413B8FE18aFdB01c9aBE5d39292BAD3",
+   "args": [
+    "inj-1",
+    "0xB48d385B3C845F523769ff741435E508e4dCa0D2",
+    "Bike loan. Ana (party A) lends Ben (party B) her blue commuter bike on Saturday. Ben returns it by Saturday 8pm in the same condition. If anything breaks while Ben has it, Ben pays for the repair."
+   ],
+   "expect": "SUCCESS",
+   "sentAt": "2026-11-03T05:30:29.932Z",
+   "tx": "0x7eade8d1918cb1e32bd8c70ea9686e269a767f34edd0038088fdd8e38509809b",
+   "transitions": [
+    {
+     "at": "2026-11-03T05:30:30.390Z",
+     "status": "PENDING"
+    },
+    {
+     "at": "2026-11-03T05:30:35.780Z",
+     "status": "ACCEPTED"
+    },
+    {
+     "at": "2026-11-03T05:31:07.756Z",
+     "status": "FINALIZED"
+    }
+   ],
+   "final": {
+    "status": "FINALIZED",
+    "result": null,
+    "execution": "SUCCESS",
+    "votes": {
+     "idle": 2,
+     "agree": 3
+    },
+    "rounds": "1",
+    "error": null
+   }
   }
  ],
  "reads": {
@@ -382,6 +421,69 @@
    "ruling": "PARTY_A",
    "status": "ruled",
    "tier": 2,
+   "votes": [
+    "PARTY_A",
+    "PARTY_A",
+    "PARTY_A"
+   ]
+  },
+  "bike_final": {
+   "accepted_a": true,
+   "accepted_b": true,
+   "arbiters": 3,
+   "created_at": "2026-11-03T05:25:23.318546Z",
+   "dispute": "Ben returned my bike a day late with a punctured rear tyre and has not paid the 14 dollar repair.",
+   "evidence": [
+    {
+     "content": "The bike came back a day late with a flat rear tyre. The shop charged 14 dollars for a new inner tube.",
+     "fetched_excerpt": "",
+     "fetched_sha256": "",
+     "kind": "text",
+     "label": "Ana's statement",
+     "sha256": "90adb5c220d2ec9ec56a283c29fc801b73509bc0bc62e7792aaf5a6452090366"
+    },
+    {
+     "content": "https://raw.githubusercontent.com/yoyoblair333-wq/justiceupgrade-app/91b56e9b79ebd40d104b3131dc8b71c2d3422ffd/docs/live/evidence-v2/bike-return-log.md",
+     "fetched_excerpt": "# Bike-share return log (demo evidence page for the JusticeUpgrade v2 live run)\n\nThis page is a fictional exhibit used to exercise JusticeUpgrade v2's live web\nevidence: during judgment every GenLayer validator fetches this page itself.\n\n| Date | Event |\n|---|---|\n| Saturday 10:00 | Ben borrows Ana's blue commuter bike. Both tyres inflated, chain clean. |\n| Sunday 18:40 | Ben returns the bike to…",
+     "fetched_sha256": "547c9d3c558a2eb2873c7e4281a937f4a2d63f5de453c5fd5433a97db76a36c7",
+     "kind": "url",
+     "label": "Return log and repair receipt",
+     "sha256": "52983eef9ad1580203e580e531d12cefb0dd395d51d371c682a0d6058cb286bb"
+    }
+   ],
+   "filed_by": "0xfF60E1b30413B8FE18aFdB01c9aBE5d39292BAD3",
+   "history": [
+    {
+     "arbiters": 1,
+     "at": "2026-11-03T05:26:40.903214Z",
+     "ruling": "PARTY_A",
+     "tier": 1,
+     "votes": [
+      "PARTY_A"
+     ]
+    },
+    {
+     "arbiters": 3,
+     "at": "2026-11-03T05:27:30.584018Z",
+     "ruling": "PARTY_A",
+     "tier": 2,
+     "votes": [
+      "PARTY_A",
+      "PARTY_A",
+      "PARTY_A"
+     ]
+    }
+   ],
+   "id": "bike-1",
+   "party_a": "0xfF60E1b30413B8FE18aFdB01c9aBE5d39292BAD3",
+   "party_b": "0xB48d385B3C845F523769ff741435E508e4dCa0D2",
+   "reasoning": "The agreement requires Ben to return the bike by Saturday 8 pm in the same condition, and to pay for any repairs caused while in his possession. The evidence shows Ben returned the bike on Sunday at 18:40—one day late—and the rear tyre was punctured, incurring a $14 repair cost that Ben acknowledged. This breaches both the return deadline and the repair payment clause.",
+   "resolution": "Ben must pay Ana $14 for the rear‑tyre repair.",
+   "ruling": "PARTY_A",
+   "status": "final",
+   "terms": "Bike loan. Ana (party A) lends Ben (party B) her blue commuter bike on Saturday. Ben returns it by Saturday 8pm in the same condition. If anything breaks while Ben has it, Ben pays for the repair.",
+   "tier": 2,
+   "updated_at": "2026-11-03T05:29:51.289463Z",
    "votes": [
     "PARTY_A",
     "PARTY_A",
