@@ -227,6 +227,15 @@
     background: linear-gradient(135deg, oklch(0.65 0.22 300) 0%, oklch(0.78 0.18 330) 100%);
   }
 
+  /* Gradient-filled text. A separate class because the `background` shorthand
+     above resets background-clip, which turned headline text into a solid box. */
+  .text-gradient-purple-pink {
+    background-image: linear-gradient(135deg, oklch(0.65 0.22 300) 0%, oklch(0.78 0.18 330) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
   .gradient-purple-blue {
     background: linear-gradient(135deg, oklch(0.65 0.22 300) 0%, oklch(0.55 0.37 265) 100%);
   }

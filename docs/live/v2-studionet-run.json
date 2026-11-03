@@ -166,6 +166,96 @@
     "rounds": "1",
     "error": null
    }
+  },
+  {
+   "label": "bike-1 appeal by Ben (tier 2: three independent arbiters)",
+   "fn": "appeal",
+   "as": "ben",
+   "signer": "0xB48d385B3C845F523769ff741435E508e4dCa0D2",
+   "args": [
+    "bike-1"
+   ],
+   "expect": "RULED",
+   "sentAt": "2026-11-03T05:27:30.325Z",
+   "tx": "0xab33fdf431d13fde32f4585685015c458c0a9ed1294581c3421ad1c54c663037",
+   "transitions": [
+    {
+     "at": "2026-11-03T05:27:30.738Z",
+     "status": "PENDING"
+    },
+    {
+     "at": "2026-11-03T05:27:36.084Z",
+     "status": "PROPOSING"
+    },
+    {
+     "at": "2026-11-03T05:27:41.438Z",
+     "status": "COMMITTING"
+    },
+    {
+     "at": "2026-11-03T05:28:02.691Z",
+     "status": "PROPOSING"
+    },
+    {
+     "at": "2026-11-03T05:28:18.852Z",
+     "status": "COMMITTING"
+    },
+    {
+     "at": "2026-11-03T05:28:40.306Z",
+     "status": "ACCEPTED"
+    },
+    {
+     "at": "2026-11-03T05:29:11.962Z",
+     "status": "FINALIZED"
+    }
+   ],
+   "final": {
+    "status": "FINALIZED",
+    "result": null,
+    "execution": "SUCCESS",
+    "votes": {
+     "agree": 3,
+     "idle": 2
+    },
+    "rounds": "2",
+    "error": null
+   }
+  },
+  {
+   "label": "bike-1 accept_ruling (Ana)",
+   "fn": "accept_ruling",
+   "as": "ana",
+   "signer": "0xfF60E1b30413B8FE18aFdB01c9aBE5d39292BAD3",
+   "args": [
+    "bike-1"
+   ],
+   "expect": "SUCCESS",
+   "sentAt": "2026-11-03T05:29:13.051Z",
+   "tx": "0x5b9f759f7da08e904bffa97d80c0843fe9f5776d7aba0a311e6966372bfd7483",
+   "transitions": [
+    {
+     "at": "2026-11-03T05:29:13.654Z",
+     "status": "PENDING"
+    },
+    {
+     "at": "2026-11-03T05:29:19.065Z",
+     "status": "ACCEPTED"
+    },
+    {
+     "at": "2026-11-03T05:29:51.014Z",
+     "status": "FINALIZED"
+    }
+   ],
+   "final": {
+    "status": "FINALIZED",
+    "result": null,
+    "execution": "SUCCESS",
+    "votes": {
+     "idle": 2,
+     "agree": 3
+    },
+    "rounds": "1",
+    "error": null
+   }
   }
  ],
  "reads": {
@@ -236,6 +326,30 @@
    "tier": 0,
    "updated_at": "2026-11-03T05:26:01.650798Z",
    "votes": []
+  },
+  "bike_tier1": {
+   "arbiters": 1,
+   "reasoning": "The agreed terms require the bike to be returned by Saturday at 8pm in the same condition, with Ben liable for any repairs if anything breaks. Evidence from the return log and Ben's own message confirms the bike was returned late with a punctured tyre. Ben's message explicitly acknowledges the damage occurred during his possession and expresses a willingness to pay.",
+   "resolution": "PARTY_B (Ben) must pay PARTY_A (Ana) 14 dollars to cover the cost of the inner tube repair as stipulated in the agreed terms.",
+   "ruling": "PARTY_A",
+   "status": "ruled",
+   "tier": 1,
+   "votes": [
+    "PARTY_A"
+   ]
+  },
+  "bike_tier2": {
+   "arbiters": 3,
+   "reasoning": "The agreement requires Ben to return the bike by Saturday 8 pm in the same condition, and to pay for any repairs caused while in his possession. The evidence shows Ben returned the bike on Sunday at 18:40—one day late—and the rear tyre was punctured, incurring a $14 repair cost that Ben acknowledged. This breaches both the return deadline and the repair payment clause.",
+   "resolution": "Ben must pay Ana $14 for the rear‑tyre repair.",
+   "ruling": "PARTY_A",
+   "status": "ruled",
+   "tier": 2,
+   "votes": [
+    "PARTY_A",
+    "PARTY_A",
+    "PARTY_A"
+   ]
   }
  },
  "deploy_tx": "0xd461fea3c9e1427dc717ce8f4977e22ff4aa4783b1b9cee3bf23511005474a01",

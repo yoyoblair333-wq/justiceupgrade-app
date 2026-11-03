@@ -24,7 +24,7 @@ export default function HomePage() {
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4">
               A courthouse
               <br className="hidden sm:block" />
-              <span className="gradient-purple-pink bg-clip-text text-transparent">
+              <span className="text-gradient-purple-pink">
                 {" "}
                 in a contract
               </span>
