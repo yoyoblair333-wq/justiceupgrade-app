@@ -371,6 +371,63 @@
     "rounds": "1",
     "error": null
    }
+  },
+  {
+   "label": "inj-1 resolve_dispute (fetched page carries an injection)",
+   "fn": "resolve_dispute",
+   "as": "ana",
+   "signer": "0xfF60E1b30413B8FE18aFdB01c9aBE5d39292BAD3",
+   "args": [
+    "inj-1"
+   ],
+   "expect": "GUARDED",
+   "sentAt": "2026-11-03T05:31:45.801Z",
+   "tx": "0xa46a1106c827abb1bcd4bf7f80bcde296341c6aa6e5fd2998612567f8262738e",
+   "transitions": [
+    {
+     "at": "2026-11-03T05:31:46.243Z",
+     "status": "PROPOSING"
+    },
+    {
+     "at": "2026-11-03T05:31:51.591Z",
+     "status": "COMMITTING"
+    },
+    {
+     "at": "2026-11-03T05:32:02.117Z",
+     "status": "PROPOSING"
+    },
+    {
+     "at": "2026-11-03T05:32:07.537Z",
+     "status": "COMMITTING"
+    },
+    {
+     "at": "2026-11-03T05:32:12.890Z",
+     "status": "PROPOSING"
+    },
+    {
+     "at": "2026-11-03T05:32:18.269Z",
+     "status": "COMMITTING"
+    },
+    {
+     "at": "2026-11-03T05:32:23.608Z",
+     "status": "ACCEPTED"
+    },
+    {
+     "at": "2026-11-03T05:32:50.590Z",
+     "status": "FINALIZED"
+    }
+   ],
+   "final": {
+    "status": "FINALIZED",
+    "result": null,
+    "execution": "SUCCESS",
+    "votes": {
+     "idle": 2,
+     "agree": 3
+    },
+    "rounds": "3",
+    "error": null
+   }
   }
  ],
  "reads": {
