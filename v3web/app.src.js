@@ -37,7 +37,7 @@ async function show(id) {
         ${a.ruling ? `<div class="r"><span>Outcome</span><b>${esc(a.ruling)}</b>${a.status === "settled" ? " <em>by settlement</em>" : ` <em>tier ${a.tier} · panel of ${a.arbiters} · votes ${esc((a.votes || []).join(", "))}</em>`}</div>` : `<div class="muted">No ruling yet.</div>`}
         ${a.reasoning && a.status !== "settled" ? `<p><b>Reasoning.</b> ${esc(a.reasoning)}</p>` : ""}
         ${a.resolution ? `<p><b>Remedy.</b> ${esc(a.resolution)}</p>` : ""}
-        ${offer ? `<p class="offer"><b>Open settlement offer</b> from ${short(offer.by)}: ${esc(offer.outcome)}: “${esc(offer.terms)}”</p>` : ""}
+        ${offer && (a.status === "disputed" || a.status === "ruled") ? `<p class="offer"><b>Open settlement offer</b> from ${short(offer.by)}: ${esc(offer.outcome)}: “${esc(offer.terms)}”</p>` : ""}
       </div>
       <h3>Timeline</h3><ol class="tl">${(a.history || []).map((h) => `<li>${h.settled ? "Settled" : "Tier " + h.tier + " ruling"}: <b>${esc(h.ruling)}</b> <span class="muted">${esc(h.at)}</span></li>`).join("") || "<li class='muted'>No rulings yet.</li>"}</ol>`;
   } catch (e) {
