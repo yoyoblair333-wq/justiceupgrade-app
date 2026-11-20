@@ -1,6 +1,10 @@
-# JusticeUpgrade v2 — the courthouse in a contract
+# JusticeUpgrade v3 — the courthouse in a contract, now hearing both sides
 
-> **Live now:** web app https://yoyoblair333-wq.github.io/justiceupgrade-app/v2/ ·
+> **v3 live now:** case viewer https://yoyoblair333-wq.github.io/justiceupgrade-app/v3/ ·
+> contract `0x7D985d8cBE1CC67B36e846065a88C0B77520480A` on GenLayer studionet ([open in Studio](https://studio.genlayer.com/?import-contract=0x7D985d8cBE1CC67B36e846065a88C0B77520480A)) ·
+> [v3 live run](docs/live/V3_LIVE_RUN.md)
+>
+> **v2:** web app https://yoyoblair333-wq.github.io/justiceupgrade-app/v2/ ·
 > contract `0x3c1c2202bD4c092616FFDBCFe7981c4299199E01` on GenLayer studionet ([open in Studio](https://studio.genlayer.com/?import-contract=0x3c1c2202bD4c092616FFDBCFe7981c4299199E01)) ·
 > [live run record](docs/live/v2-studionet-run.json) · [45-second demo](docs/media/v2-demo.mp4)
 
@@ -54,6 +58,51 @@ bash scripts/verify.sh
 ```
 
 It lints both contracts, runs the v2, v1 and MilestoneJudge contract tests, the ODIR adapter tests, builds and tests the v1 web app, and does a read-only live check of the deployed v1 contract on studionet. CI also builds the v2 frontend.
+
+---
+
+## What v3 adds: due process, both sides heard
+
+v2 could rule after hearing only the party who filed. A real court never does that.
+v3 (`contracts/justice_upgrade.py`, schema `justiceupgrade.court.v3`; v2 is frozen
+in `v2/`) adds the three things that make a ruling fair to both sides:
+
+1. **The respondent answers, with evidence.** `respond_to_dispute(id, answer,
+   evidence_json)` lets the party who did *not* file put its own statement and its
+   own exhibits on the record: text and **live URLs**, committed by sha256 exactly
+   like the filer's and labelled by side. Every arbiter on every tier reads the
+   DISPUTE and the ANSWER with equal weight, and during consensus **every validator
+   re-fetches both sides' links** and re-judges.
+2. **A response window, then a default proceeding.** Nobody can file and get an
+   instant ruling before the other side can answer: `resolve_dispute` opens only
+   once the respondent has answered or the response window (constructor argument,
+   default 72 h) has closed. An unanswered case is flagged `default_proceeding`
+   and the panel is told explicitly that **silence is not an admission**: the
+   filer still has to win on the terms and its own evidence. A late answer is
+   still accepted if nobody has resolved yet; hearing both sides beats a default.
+3. **Settlement.** `propose_settlement(id, outcome, terms)` puts an offer on the
+   table at any point before the case is final (`PARTY_A`, `PARTY_B` or `SPLIT`
+   plus plain-language terms). If the other party calls `accept_settlement`, the
+   case closes as `settled` **with no model call**, and an anonymized "settled"
+   precedent joins the public ledger. A newer offer replaces the open one; the
+   offerer can `withdraw_settlement`; a final ruling clears any open offer.
+
+| New method | Who | What |
+|---|---|---|
+| `respond_to_dispute(id, answer, evidence_json="")` | the respondent only, once, before the first ruling | answer + up to 6 evidence items (`side: "respondent"`) |
+| `propose_settlement(id, outcome, terms)` | either party, while `disputed` or `ruled` | open offer `{by, outcome, terms, at}` |
+| `withdraw_settlement(id)` | the offerer | removes the open offer |
+| `accept_settlement(id)` | the other party | status → `settled`, precedent recorded |
+
+`get_agreement` now also returns `answer`, `answer_evidence`, `respondent`,
+`response_deadline_epoch`, `default_proceeding` and `settlement_offer`;
+`precedent_stats` counts `settled`; `get_config` reports the response window.
+
+Tests: 19 new direct-mode tests in `tests/direct/test_due_process.py` (both sides
+reach every arbiter and both links are fetched, validator rejects a different
+ruling, window gating, default proceeding prompt, late answer, appeal panel hears
+both sides, settlement lifecycle, injection screens on answers and offers), plus the
+22 v2-era tests run against v3, the frozen v2 suite (22) and v1 suite (144).
 
 ---
 

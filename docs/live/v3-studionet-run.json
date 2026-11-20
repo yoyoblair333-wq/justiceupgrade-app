@@ -1,0 +1,412 @@
+{
+ "network": "studionet (chain 61999)",
+ "schema": "justiceupgrade.court.v3",
+ "contract_code_sha256": "6dc680b58866b9e9b24fc0014c752c87408ec9edff464c03d954026fb35798d4",
+ "evidence_commit": "e8f751a42797232b6dd158e1cec6244c1e6bcb34",
+ "response_window_seconds": 300,
+ "parties": {
+  "ana_party_a": "0x95f9F45674EAd990250d32bb04EaE728Be84C607",
+  "ben_party_b": "0x34CC723bF77C8dcfAed44DbF1ab4A281220bad6d"
+ },
+ "steps": [
+  {
+   "step": "deploy v3 (response window 300 s)",
+   "by": "deployer",
+   "fn": "deploy",
+   "tx": "0xa6353cc00b75bbc27177243984d330a36c9fe1310b03a1422f335e62e5890835",
+   "status": "ACCEPTED",
+   "result": "MAJORITY_AGREE",
+   "votes": {
+    "agree": 5
+   },
+   "error": null,
+   "seconds": 1
+  },
+  {
+   "step": "laptop-1: Ana records the agreement",
+   "by": "ana",
+   "fn": "create_agreement",
+   "tx": "0x535f0eae39a0dbb0a23b473d1a218cb326c8c78365f4b990653d5e425d3cd7ce",
+   "status": "ACCEPTED",
+   "result": "MAJORITY_AGREE",
+   "votes": {
+    "idle": 2,
+    "agree": 3
+   },
+   "error": null,
+   "seconds": 11
+  },
+  {
+   "step": "laptop-1: Ben files with his battery test (live URL)",
+   "by": "ben",
+   "fn": "file_dispute",
+   "tx": "0xf4c06eb43c73ae2d9208d40b0487e27562ee134f9862d53d9c73913959f25d00",
+   "status": "ACCEPTED",
+   "result": "MAJORITY_AGREE",
+   "votes": {
+    "agree": 5
+   },
+   "error": null,
+   "seconds": 11
+  },
+  {
+   "step": "laptop-1: resolve BEFORE Ana answers (refused: window open)",
+   "by": "ben",
+   "fn": "resolve_dispute",
+   "tx": "0xa138104f2a877305caf861b1a4dbe9fd37f29e207cf7cf29c2afde7a9b85e52d",
+   "status": "ACCEPTED",
+   "result": "MAJORITY_AGREE",
+   "votes": {
+    "agree": 5
+   },
+   "error": "[JUSTICE] the respondent's answer window is still open; resolve after it closes or once they answer",
+   "seconds": 11
+  },
+  {
+   "step": "laptop-1: Ana answers with her pre-shipment test (live URL)",
+   "by": "ana",
+   "fn": "respond_to_dispute",
+   "tx": "0x9c284969981ae3c51e6bba5a320ebba2449a91962218ad7f0d3700b111385950",
+   "status": "ACCEPTED",
+   "result": "MAJORITY_AGREE",
+   "votes": {
+    "agree": 4,
+    "idle": 1
+   },
+   "error": null,
+   "seconds": 12
+  },
+  {
+   "step": "laptop-1: resolve (both sides heard; both URLs fetched live)",
+   "by": "ben",
+   "fn": "resolve_dispute",
+   "tx": "0x516c059eee033c88be015f36ca472c9054ea9962eb2349762791e1867947f6ab",
+   "status": "UNDETERMINED",
+   "result": "MAJORITY_DISAGREE",
+   "votes": {
+    "agree": 2,
+    "disagree": 3
+   },
+   "error": null,
+   "seconds": 118
+  },
+  {
+   "step": "laptop-1: Ana offers a SPLIT settlement",
+   "by": "ana",
+   "fn": "propose_settlement",
+   "tx": "0x8554fe4658b192a316a25a9ef591baf35bb2212ed56f15cf3fa7d4f3b1aff9d9",
+   "status": "ACCEPTED",
+   "result": "MAJORITY_AGREE",
+   "votes": {
+    "idle": 2,
+    "agree": 3
+   },
+   "error": null,
+   "seconds": 11
+  },
+  {
+   "step": "laptop-1: Ben accepts the settlement (no model call)",
+   "by": "ben",
+   "fn": "accept_settlement",
+   "tx": "0x40f074daa00091cebe877b49ff998411bcca7845c2246aa3e786e74aeb588403",
+   "status": "ACCEPTED",
+   "result": "MAJORITY_AGREE",
+   "votes": {
+    "agree": 5
+   },
+   "error": null,
+   "seconds": 11
+  },
+  {
+   "step": "default-1: Ana records a second agreement",
+   "by": "ana",
+   "fn": "create_agreement",
+   "tx": "0xe78f8be5b1c2de445b7caf9eaad5ce5f520ade6a5f4f54101bd3777636ddb297",
+   "status": "ACCEPTED",
+   "result": "MAJORITY_AGREE",
+   "votes": {
+    "agree": 5
+   },
+   "error": null,
+   "seconds": 11
+  },
+  {
+   "step": "default-1: Ben files; Ana does not answer",
+   "by": "ben",
+   "fn": "file_dispute",
+   "tx": "0x7ff0c3700c3d104f58494daa17af7bed63eafca954234f056f05e0726408f145",
+   "status": "ACCEPTED",
+   "result": "MAJORITY_AGREE",
+   "votes": {
+    "agree": 5
+   },
+   "error": null,
+   "seconds": 12
+  },
+  {
+   "step": "default-1: resolve after the window closed (DEFAULT PROCEEDING)",
+   "by": "ben",
+   "fn": "resolve_dispute",
+   "tx": "0xb7193f7d8d8387964ef8045c616040157e1953f7c4289fd4f6147b6f169dd21a",
+   "status": "ACCEPTED",
+   "result": "MAJORITY_AGREE",
+   "votes": {
+    "idle": 2,
+    "agree": 3
+   },
+   "error": null,
+   "seconds": 22
+  },
+  {
+   "step": "transfer ownership to Blair's wallet",
+   "by": "deployer",
+   "fn": "transfer_ownership",
+   "tx": "0x2153eb0bc0d359f26386e16b2eac5c5797efc4871dd50cad4f56eba55fe46a41",
+   "status": "ACCEPTED",
+   "result": "MAJORITY_AGREE",
+   "votes": {
+    "agree": 5
+   },
+   "error": null,
+   "seconds": 11
+  }
+ ],
+ "reads": {
+  "laptop-1 after ruling": {
+   "accepted_a": false,
+   "accepted_b": false,
+   "answer": "The listing promised about 3 hours of LIGHT use. My test before shipping gave 3h10m. Ben tested heavy browsing at 50% brightness, which drains faster.",
+   "answer_evidence": [
+    {
+     "content": "https://raw.githubusercontent.com/yoyoblair333-wq/justiceupgrade-app/e8f751a42797232b6dd158e1cec6244c1e6bcb34/docs/live/evidence-v3/seller-pre-shipment-test.md",
+     "fetched_excerpt": "",
+     "fetched_sha256": "",
+     "kind": "url",
+     "label": "Seller pre-shipment test",
+     "sha256": "f199c359c3c5cd6c7fc7ce1e80b72488db7962cb1fd48ec7ce599cd9bc84c870",
+     "side": "respondent"
+    },
+    {
+     "content": "Battery holds about 3 hours of light use.",
+     "fetched_excerpt": "",
+     "fetched_sha256": "",
+     "kind": "text",
+     "label": "Listing wording",
+     "sha256": "e2ea702fd6da233a72898a22e755d9b988b4fc5b464d5bd6032d74a78c686008",
+     "side": "respondent"
+    }
+   ],
+   "answered_at": "2026-11-20T13:58:59.567870Z",
+   "arbiters": 0,
+   "created_at": "2026-11-20T13:58:14.568800Z",
+   "default_proceeding": false,
+   "dispute": "The battery died in 42 minutes, nowhere near the 3 hours promised. I want a partial refund.",
+   "evidence": [
+    {
+     "content": "https://raw.githubusercontent.com/yoyoblair333-wq/justiceupgrade-app/e8f751a42797232b6dd158e1cec6244c1e6bcb34/docs/live/evidence-v3/buyer-battery-test.md",
+     "fetched_excerpt": "",
+     "fetched_sha256": "",
+     "kind": "url",
+     "label": "Buyer battery test",
+     "sha256": "13e4a54de6f053213bbf7db415005144fcbd5c8a99f6c3a831f3fc2c66e5995c",
+     "side": "filer"
+    }
+   ],
+   "filed_by": "0x34CC723bF77C8dcfAed44DbF1ab4A281220bad6d",
+   "history": [],
+   "id": "laptop-1",
+   "party_a": "0x95f9F45674EAd990250d32bb04EaE728Be84C607",
+   "party_b": "0x34CC723bF77C8dcfAed44DbF1ab4A281220bad6d",
+   "reasoning": "",
+   "resolution": "",
+   "respondent": "0x95f9F45674EAd990250d32bb04EaE728Be84C607",
+   "response_deadline_epoch": 1795183409,
+   "ruling": "",
+   "settlement_offer": null,
+   "status": "disputed",
+   "terms": "Ana sells Ben her used laptop (serial ending 4417) for 400 GEN. The listing says the battery holds about 3 hours of light use. Ana ships by 2026-11-19.",
+   "tier": 0,
+   "updated_at": "2026-11-20T13:58:59.567870Z",
+   "votes": []
+  },
+  "laptop-1 settled": {
+   "accepted_a": false,
+   "accepted_b": false,
+   "answer": "The listing promised about 3 hours of LIGHT use. My test before shipping gave 3h10m. Ben tested heavy browsing at 50% brightness, which drains faster.",
+   "answer_evidence": [
+    {
+     "content": "https://raw.githubusercontent.com/yoyoblair333-wq/justiceupgrade-app/e8f751a42797232b6dd158e1cec6244c1e6bcb34/docs/live/evidence-v3/seller-pre-shipment-test.md",
+     "fetched_excerpt": "",
+     "fetched_sha256": "",
+     "kind": "url",
+     "label": "Seller pre-shipment test",
+     "sha256": "f199c359c3c5cd6c7fc7ce1e80b72488db7962cb1fd48ec7ce599cd9bc84c870",
+     "side": "respondent"
+    },
+    {
+     "content": "Battery holds about 3 hours of light use.",
+     "fetched_excerpt": "",
+     "fetched_sha256": "",
+     "kind": "text",
+     "label": "Listing wording",
+     "sha256": "e2ea702fd6da233a72898a22e755d9b988b4fc5b464d5bd6032d74a78c686008",
+     "side": "respondent"
+    }
+   ],
+   "answered_at": "2026-11-20T13:58:59.567870Z",
+   "arbiters": 0,
+   "created_at": "2026-11-20T13:58:14.568800Z",
+   "default_proceeding": false,
+   "dispute": "The battery died in 42 minutes, nowhere near the 3 hours promised. I want a partial refund.",
+   "evidence": [
+    {
+     "content": "https://raw.githubusercontent.com/yoyoblair333-wq/justiceupgrade-app/e8f751a42797232b6dd158e1cec6244c1e6bcb34/docs/live/evidence-v3/buyer-battery-test.md",
+     "fetched_excerpt": "",
+     "fetched_sha256": "",
+     "kind": "url",
+     "label": "Buyer battery test",
+     "sha256": "13e4a54de6f053213bbf7db415005144fcbd5c8a99f6c3a831f3fc2c66e5995c",
+     "side": "filer"
+    }
+   ],
+   "filed_by": "0x34CC723bF77C8dcfAed44DbF1ab4A281220bad6d",
+   "history": [
+    {
+     "arbiters": 0,
+     "at": "2026-11-20T14:01:51.048943Z",
+     "ruling": "SPLIT",
+     "settled": true,
+     "tier": 0,
+     "votes": []
+    }
+   ],
+   "id": "laptop-1",
+   "party_a": "0x95f9F45674EAd990250d32bb04EaE728Be84C607",
+   "party_b": "0x34CC723bF77C8dcfAed44DbF1ab4A281220bad6d",
+   "reasoning": "",
+   "resolution": "Settled by agreement: Ana refunds 80 GEN toward a replacement battery; Ben keeps the laptop.",
+   "respondent": "0x95f9F45674EAd990250d32bb04EaE728Be84C607",
+   "response_deadline_epoch": 1795183409,
+   "ruling": "SPLIT",
+   "settlement_offer": {
+    "at": "2026-11-20T14:01:36.183478Z",
+    "by": "0x95f9F45674EAd990250d32bb04EaE728Be84C607",
+    "outcome": "SPLIT",
+    "terms": "Ana refunds 80 GEN toward a replacement battery; Ben keeps the laptop."
+   },
+   "status": "settled",
+   "terms": "Ana sells Ben her used laptop (serial ending 4417) for 400 GEN. The listing says the battery holds about 3 hours of light use. Ana ships by 2026-11-19.",
+   "tier": 0,
+   "updated_at": "2026-11-20T14:01:51.048943Z",
+   "votes": []
+  },
+  "default-1 after ruling": {
+   "accepted_a": false,
+   "accepted_b": false,
+   "answer": "",
+   "answer_evidence": [],
+   "answered_at": "",
+   "arbiters": 1,
+   "created_at": "2026-11-20T14:02:07.608810Z",
+   "default_proceeding": true,
+   "dispute": "Only 6 of the 10 icons were delivered.",
+   "evidence": [
+    {
+     "content": "Folder received on 2026-11-19 holds 6 icon files.",
+     "fetched_excerpt": "",
+     "fetched_sha256": "",
+     "kind": "text",
+     "label": "Delivery count",
+     "sha256": "dfecb7902d2ec5326e938543a7498b04bac56bb8390ceb5f5e9d2ec9f8306d70",
+     "side": "filer"
+    }
+   ],
+   "filed_by": "0x34CC723bF77C8dcfAed44DbF1ab4A281220bad6d",
+   "history": [
+    {
+     "arbiters": 1,
+     "at": "2026-11-20T14:08:07.225787Z",
+     "ruling": "PARTY_B",
+     "tier": 1,
+     "votes": [
+      "PARTY_B"
+     ]
+    }
+   ],
+   "id": "default-1",
+   "party_a": "0x95f9F45674EAd990250d32bb04EaE728Be84C607",
+   "party_b": "0x34CC723bF77C8dcfAed44DbF1ab4A281220bad6d",
+   "reasoning": "The terms required delivery of 10 hand-drawn icons by 2026-11-19. The filer's evidence shows only 6 icon files were received on that date. Because this is a default proceeding, the filer prevails where the terms and the filer's evidence support the claim.",
+   "resolution": "Order PARTY_A to deliver the remaining 4 hand-drawn icons by 2026-11-26; PARTY_B may withhold the full 50 GEN payment until all 10 icons are delivered.",
+   "respondent": "0x95f9F45674EAd990250d32bb04EaE728Be84C607",
+   "response_deadline_epoch": 1795183642,
+   "ruling": "PARTY_B",
+   "settlement_offer": null,
+   "status": "ruled",
+   "terms": "Ana delivers 10 hand-drawn icons to Ben by 2026-11-19 for 50 GEN.",
+   "tier": 1,
+   "updated_at": "2026-11-20T14:08:07.225787Z",
+   "votes": [
+    "PARTY_B"
+   ]
+  },
+  "precedents": [
+   {
+    "at": "2026-11-20T14:01:51.048943Z",
+    "principle": "Settled by agreement of the parties on a split outcome.",
+    "ruling": "SPLIT",
+    "settled": true,
+    "tiers": 0
+   }
+  ],
+  "precedent_stats": {
+   "by_ruling": {
+    "INSUFFICIENT_EVIDENCE": 0,
+    "PARTY_A": 0,
+    "PARTY_B": 0,
+    "SPLIT": 1
+   },
+   "settled": 1,
+   "total": 1
+  },
+  "config": {
+   "arbiter_names": [
+    "Ada",
+    "Rao",
+    "Mei",
+    "Ivan",
+    "Noa"
+   ],
+   "evidence_kinds": [
+    "text",
+    "url"
+   ],
+   "max_evidence_items": 6,
+   "owner": "0x920fbbCf2106B693A857D1995c198e341220a46A",
+   "paused": false,
+   "precedents": 1,
+   "relayer": "0x506dB0ADD89f2a2373839649E1cCb9104357bdb0",
+   "response_window_seconds": 300,
+   "rulings": [
+    "PARTY_A",
+    "PARTY_B",
+    "SPLIT",
+    "INSUFFICIENT_EVIDENCE"
+   ],
+   "schema": "justiceupgrade.court.v3",
+   "settlement_outcomes": [
+    "PARTY_A",
+    "PARTY_B",
+    "SPLIT"
+   ],
+   "tier_arbiters": {
+    "1": 1,
+    "2": 3,
+    "3": 5
+   }
+  }
+ },
+ "contract": "0x7D985d8cBE1CC67B36e846065a88C0B77520480A",
+ "explorer": "https://explorer-studio.genlayer.com/address/0x7D985d8cBE1CC67B36e846065a88C0B77520480A",
+ "studio": "https://studio.genlayer.com/?import-contract=0x7D985d8cBE1CC67B36e846065a88C0B77520480A"
+}

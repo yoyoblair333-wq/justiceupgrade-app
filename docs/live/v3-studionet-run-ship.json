@@ -1,0 +1,116 @@
+{
+ "contract": "0x7D985d8cBE1CC67B36e846065a88C0B77520480A",
+ "evidence_commit": "da130b955c82784d93818fdca65c4422bab9f15b",
+ "parties": {
+  "cara_party_a": "0x4388a4957ff7d60f7ED9706eD2613AccB045e0Ae",
+  "dev_party_b": "0xc230fF4fB9d0cAdb1BF984D1BE0539199cb20197"
+ },
+ "steps": [
+  {
+   "step": "ship-1: Cara records the sale",
+   "by": "cara",
+   "fn": "create_agreement",
+   "tx": "0x886349d6b0f0c8da6aa0bd989dcf70dae92b09a3e48c57297ee737d8def862bd",
+   "status": "ACCEPTED",
+   "result": "MAJORITY_AGREE",
+   "votes": {
+    "agree": 3,
+    "idle": 2
+   },
+   "error": null,
+   "seconds": 11
+  },
+  {
+   "step": "ship-1: Dev files (claims non-delivery)",
+   "by": "dev",
+   "fn": "file_dispute",
+   "tx": "0x6e6a3c9acb5489e0784afb6e8d4344eda132270050d8055f3c7888fb8982b68e",
+   "status": "ACCEPTED",
+   "result": "MAJORITY_AGREE",
+   "votes": {
+    "agree": 3,
+    "idle": 2
+   },
+   "error": null,
+   "seconds": 11
+  },
+  {
+   "step": "ship-1: Cara answers with the carrier tracking page (live URL)",
+   "by": "cara",
+   "fn": "respond_to_dispute",
+   "tx": "0xe52ab1325d4d8160199020c0b037e367a7495bda848a9f1d233f0d1f35e3dcc6",
+   "status": "ACCEPTED",
+   "result": "MAJORITY_AGREE",
+   "votes": {
+    "agree": 3,
+    "idle": 2
+   },
+   "error": null,
+   "seconds": 11
+  },
+  {
+   "step": "ship-1: resolve (both sides heard; respondent's URL fetched live) #1",
+   "by": "dev",
+   "fn": "resolve_dispute",
+   "tx": "0x35fe4dd97592251f49258f587f40c12ef6ce65ae7f76700c33d63677728e3afe",
+   "status": "ACCEPTED",
+   "result": "MAJORITY_AGREE",
+   "votes": {
+    "agree": 3,
+    "idle": 2
+   },
+   "error": null,
+   "seconds": 22
+  }
+ ],
+ "read": {
+  "accepted_a": false,
+  "accepted_b": false,
+  "answer": "The lens was delivered on 2026-11-18 at 11:05 and Dev signed for it. The carrier's tracking record is attached.",
+  "answer_evidence": [
+   {
+    "content": "https://raw.githubusercontent.com/yoyoblair333-wq/justiceupgrade-app/da130b955c82784d93818fdca65c4422bab9f15b/docs/live/evidence-v3/carrier-tracking.md",
+    "fetched_excerpt": "# Carrier tracking record: shipment JU-88231\n\n| Time (UTC) | Event |\n|---|---|\n| 2026-11-17 09:12 | Picked up from sender (Ana), 1 parcel, 2.1 kg |\n| 2026-11-18 07:40 | Out for delivery |\n| 2026-11-18 11:05 | **DELIVERED**, handed to recipient, signature captured: \"D. Okoro\" |\n\nDelivery photo on file: parcel at front door, unit 4B.\nRecipient name on the label: Dev Okoro, unit 4B.",
+    "fetched_sha256": "1ad4497c591a70c0296e990dd18725fc2750f5813493be2d711853b4d4218ce4",
+    "kind": "url",
+    "label": "Carrier tracking JU-88231",
+    "sha256": "824e930b423b1f9348757bb1d1f7c5ee7aa6337e39a3a327bd5a90a97af55018",
+    "side": "respondent"
+   }
+  ],
+  "answered_at": "2026-11-20T14:05:12.768808Z",
+  "arbiters": 1,
+  "created_at": "2026-11-20T14:04:42.249060Z",
+  "default_proceeding": false,
+  "dispute": "I paid but the lens never arrived. I want a full refund of 120 GEN.",
+  "evidence": [],
+  "filed_by": "0xc230fF4fB9d0cAdb1BF984D1BE0539199cb20197",
+  "history": [
+   {
+    "arbiters": 1,
+    "at": "2026-11-20T14:05:27.950906Z",
+    "ruling": "PARTY_A",
+    "tier": 1,
+    "votes": [
+     "PARTY_A"
+    ]
+   }
+  ],
+  "id": "ship-1",
+  "party_a": "0x4388a4957ff7d60f7ED9706eD2613AccB045e0Ae",
+  "party_b": "0xc230fF4fB9d0cAdb1BF984D1BE0539199cb20197",
+  "reasoning": "The terms required Cara to ship the lens to Dev at unit 4B by 2026-11-18. The carrier record supports timely shipment and delivery to that unit, identifying Dev Okoro on the label and recording a matching signature; although it lists the sender as Ana rather than Cara, that discrepancy alone does not outweigh the delivery evidence and establish nonperformance.",
+  "resolution": "Deny PARTY_B's request for a 120 GEN refund; no repayment is required.",
+  "respondent": "0x4388a4957ff7d60f7ED9706eD2613AccB045e0Ae",
+  "response_deadline_epoch": 1795183797,
+  "ruling": "PARTY_A",
+  "settlement_offer": null,
+  "status": "ruled",
+  "terms": "Cara sells Dev a used 50mm camera lens for 120 GEN, paid up front. Cara ships it to Dev's address, unit 4B, by 2026-11-18.",
+  "tier": 1,
+  "updated_at": "2026-11-20T14:05:27.950906Z",
+  "votes": [
+   "PARTY_A"
+  ]
+ }
+}

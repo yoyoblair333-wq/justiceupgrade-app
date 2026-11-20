@@ -1,7 +1,7 @@
 name: pages
 
-# Builds web/ (the live JusticeUpgrade v1 web app) plus the v2 frontend at
-# /v2/, and deploys both to GitHub
+# Builds web/ (the live JusticeUpgrade v1 web app), the v2 frontend at /v2/
+# and the v3 case viewer at /v3/, and deploys both to GitHub
 # Pages at https://yoyoblair333-wq.github.io/justiceupgrade-app/ (every URL in
 # the page is relative, so it works under the /justiceupgrade-app/ base path).
 # The page reads the contract on GenLayer studionet live from the visitor's
@@ -60,6 +60,9 @@ jobs:
           npm ci --no-audit --no-fund
           npm run build
           rm -rf ../web/dist/v2 && cp -r out ../web/dist/v2
+      - name: Add the v3 case viewer at /v3/ (static, prebuilt bundle)
+        working-directory: .
+        run: rm -rf web/dist/v3 && mkdir -p web/dist/v3 && cp v3web/index.html v3web/app.js web/dist/v3/
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:
