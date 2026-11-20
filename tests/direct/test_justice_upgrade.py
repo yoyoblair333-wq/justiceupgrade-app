@@ -1,5 +1,5 @@
 """
-Direct-mode tests for JusticeUpgrade v2 — the on-chain AI court.
+Direct-mode tests for JusticeUpgrade (v2 behaviour, run against the v3 contract) — the on-chain AI court.
 
 Real GenVM Python SDK in-process; the LLM is mocked by regex (`mock_llm`) and the
 live web fetch is mocked by URL (`mock_web`). `gl.vm.run_nondet_unsafe` runs the
@@ -53,8 +53,11 @@ def ev_url(label, url):
 
 @pytest.fixture
 def court(direct_vm, direct_deploy, direct_alice):
+    # v3: response window 0 here, so these v2-era tests can resolve right after
+    # filing (a default proceeding). The window itself is covered in
+    # test_due_process.py.
     direct_vm.sender = direct_alice
-    return direct_deploy(CONTRACT)
+    return direct_deploy(CONTRACT, "", 0)
 
 
 def open_dispute(vm, court, alice, bob, evidence=None, terms=TERMS, dispute=DISPUTE, aid="deal-1"):
@@ -312,7 +315,7 @@ class TestGuards:
 class TestAdmin:
     def test_config(self, court):
         cfg = court.get_config()
-        assert cfg["schema"] == "justiceupgrade.court.v2"
+        assert cfg["schema"] == "justiceupgrade.court.v3"
         assert cfg["rulings"] == ["PARTY_A", "PARTY_B", "SPLIT", "INSUFFICIENT_EVIDENCE"]
         assert cfg["tier_arbiters"] == {"1": 1, "2": 3, "3": 5}
         assert len(cfg["arbiter_names"]) == 5
