@@ -55,5 +55,5 @@ async function ledger() {
 $("#addr").innerHTML = `<a href="${EXPLORER}/address/${CONTRACT}" target="_blank" rel="noopener">${CONTRACT}</a>`;
 document.querySelectorAll("[data-case]").forEach((b) => b.addEventListener("click", () => show(b.dataset.case)));
 $("#go").addEventListener("click", () => show($("#cid").value.trim()));
-show(new URLSearchParams(location.search).get("case") || "laptop-1");
+show(new URLSearchParams(location.search).get("case") || "ship-1");
 ledger(); setInterval(ledger, 30000);
